@@ -15,9 +15,49 @@ public class Bishop extends Piece {
         if(end.getPiece()!=null && end.getPiece().getPieceColor() == this.getPieceColor()){
             return false;
         }
-        int x = Math.abs(start.getX() - end.getX());
-        int y = Math.abs(start.getY() - end.getY());
-        return x == y;
+        int xdiff = Math.abs(start.getX() - end.getX());
+        int ydiff = Math.abs(start.getY() - end.getY());
+        return (xdiff == ydiff) && this.drawPath(board, start, end);
+    }
+
+    public boolean drawPath(Board board,Tile start,Tile end){
+        if(start.getX()<end.getX() && start.getY()<end.getY()){
+            //forward right
+            int j=1;
+            for(int i=start.getX()+1;i<end.getX();i++){
+                if(board.getTile(i, start.getY()+j).getPiece()!=null) return false;
+                j++;
+            }
+            return true;
+        }
+        else if(start.getX()<end.getX() && start.getY()>end.getY()){
+            //forward left
+            int j=1;
+            for(int i=start.getX()+1;i<end.getX();i++){
+                if(board.getTile(i, start.getY()-j).getPiece()!=null) return false;
+                j++;
+            }
+            return true;
+        }
+        else if(start.getX()>end.getX() && start.getY()<end.getY()){
+            //backward right
+            int j=1;
+            for(int i=start.getX()-1;i>end.getX();i--){
+                if(board.getTile(i, start.getY()+j).getPiece()!=null) return false;
+                j++;
+            }
+            return true;
+        }
+        else if(start.getX()>end.getX() && start.getY()>end.getY()){
+            //backward left
+            int j=1;
+            for(int i=start.getX()-1;i>end.getX();i--){
+                if(board.getTile(i, start.getY()-j).getPiece()!=null) return false;
+                j++;
+            }
+            return true;
+        }
+        return false;
     }
     
 }
