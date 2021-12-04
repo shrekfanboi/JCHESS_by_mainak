@@ -15,8 +15,43 @@ public class Rook extends Piece {
             return false;
         }
 
-        int x = Math.abs(start.getX() - end.getX());
-        int y = Math.abs(start.getY() - end.getY());
-        return (x>0 && y==0) || (x==0 && y > 0);
+        int xdiff = Math.abs(start.getX() - end.getX());
+        int ydiff = Math.abs(start.getY() - end.getY());
+        
+        return ((xdiff>0 && ydiff==0) || (xdiff==0 && ydiff > 0)) && this.drawPath(board, start, end, xdiff, ydiff);
+    }
+
+    public boolean drawPath(Board board,Tile start,Tile end,int x,int y){
+        int i;
+        int j;
+        if(y == 0 && start.getX() < end.getX()){
+            //vertically up
+            for(i=start.getX()+1;i<end.getX();i++){
+                if(board.getTile(i, start.getY()).getPiece()!=null ) return false;
+            }
+            return true;
+        }
+        else if(y == 0 && start.getX() > end.getX()){
+            //vertically down
+            for(i=start.getX()-1;i>end.getX();i--){
+                if(board.getTile(i, start.getY()).getPiece()!=null) return false;
+            }
+            return true;
+        }
+        else if(x == 0 && start.getY() < end.getY()){
+            //horizantally right
+            for(j=start.getY()+1;j<end.getY();j++){
+                if(board.getTile(start.getX(), j).getPiece()!=null) return false;
+            }
+            return true;
+        }
+        else if(x == 0 && start.getY() > end.getY()){
+            //horizantally left
+            for(j=start.getY()-1;j>end.getY();j--){
+                if(board.getTile(start.getX(), j).getPiece()!=null) return false;
+            }
+            return true;
+        }
+        return false;
     }
 }

@@ -53,10 +53,12 @@ public class Game {
         Move move = new Move(this.currentTurn, start, end,this.chessboard);
         if(move.makeMove()){
             this.setCurrentTurn();
-            this.pieceKilled = move.getPieceKilled();
-            move.setPieceKilled(null);
+            this.setPieceKilled(move.getPieceKilled());
             System.out.println("Move is successful");
         }
+        // if(this.getPieceKilled()!=null) System.out.println(this.getPieceKilled().toString());
+        // else {System.out.println("null");} 
+        move.setPieceKilled(null);
     }
 
     public Player getCurrentTurn(){
@@ -68,5 +70,8 @@ public class Game {
     }
     public Piece getPieceKilled(){
         return this.pieceKilled;
+    }
+    public void setPieceKilled(Piece p){
+        this.pieceKilled = p;
     }
 }

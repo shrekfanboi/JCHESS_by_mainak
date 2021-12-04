@@ -28,6 +28,7 @@ public class Move {
         }
 
         else if(this.pieceMoved.isValidMove(board, this.start, this.end)){
+            System.out.println("valid move-->");
             this.pieceMoved.setCoord(end);
             this.board.setTile(this.start,null);
             if(this.end.getPiece()!=null) this.setPieceKilled(this.end.getPiece());

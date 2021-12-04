@@ -25,7 +25,8 @@ public class Pawn extends Piece{
             }
             else{
                 //enemy piece
-                return x == 1 && y == 1;
+                if(start.getPiece().getPieceColor() == Type.WHITE) return (start.getX()<end.getX()) &&(x == 1 && y == 1);
+                else return (start.getX()>end.getX()) &&(x == 1 && y == 1);
             }
         }
     }

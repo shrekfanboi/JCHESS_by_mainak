@@ -131,6 +131,7 @@ public class ChessGUI {
                             else {
                                 chessGame.playerMove(source, destination);
                                 takenPiecesPanel.setKilledPieces(chessGame.getPieceKilled());
+                                chessGame.setPieceKilled(null);
                                 source = destination = null;
                             }
                         }
