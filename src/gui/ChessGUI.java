@@ -23,6 +23,7 @@ import javax.swing.border.LineBorder;
 
 import board.Board;
 import board.Tile;
+import board.Type;
 import game.Game;
 import pieces.Piece;
 
@@ -79,13 +80,30 @@ public class ChessGUI {
         void drawBoard(Board chessBoard){
             for(TilePanel tilePanel:boardTile){
                 tilePanel.drawTile(chessBoard);
+                indicateCheck(chessBoard, tilePanel);
+                add(tilePanel);
             }
-            this.
             validate();
         }
 
+        void indicateCheck(Board chessBoard,TilePanel tilePanel){
+                if(chessGame.getWhiteKingChecked()){
+                    Tile kingTile = chessBoard.getPieceTile("KING", Type.WHITE).get(0);
+                    if(tilePanel.tileId == kingTile.getId() && tilePanel.getBorder()==null){
+                         tilePanel.setBorder(new LineBorder(Color.RED,3));
+                    }
+                }
+                if(chessGame.getBlackKingChecked()){
+                    Tile kingTile = chessBoard.getPieceTile("KING", Type.BLACK).get(0);
+                    if(tilePanel.tileId == kingTile.getId() && tilePanel.getBorder()==null){
+                        tilePanel.setBorder(new LineBorder(Color.RED,3));
+                    }
+                }
+
+        }
+
         void resetBorder(){
-            for(TilePanel t:boardPanel.boardTile){
+            for(TilePanel t:boardTile){
                 t.setBorder(null);
             }
         }
@@ -219,5 +237,4 @@ public class ChessGUI {
     public static void main(String[] args){
         new ChessGUI();
     }
-
 }

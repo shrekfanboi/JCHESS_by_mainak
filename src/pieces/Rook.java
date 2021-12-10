@@ -39,14 +39,14 @@ public class Rook extends Piece {
             return true;
         }
         else if(x == 0 && start.getY() < end.getY()){
-            //horizantally right
+            //horizantally left
             for(j=start.getY()+1;j<end.getY();j++){
                 if(board.getTile(start.getX(), j).getPiece()!=null) return false;
             }
             return true;
         }
         else if(x == 0 && start.getY() > end.getY()){
-            //horizantally lefisValidPath
+            //horizantally right
             for(j=start.getY()-1;j>end.getY();j--){
                 if(board.getTile(start.getX(), j).getPiece()!=null) return false;
             }

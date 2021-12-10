@@ -27,7 +27,6 @@ public class Queen extends Piece {
         {
             //Rook's movement
             if(ydiff == 0 && start.getX() < end.getX()){
-                System.out.println("Vertical Up");
                 //vertically up
                 for(i=start.getX()+1;i<end.getX();i++){
                     if(board.getTile(i, start.getY()).getPiece()!=null) return false;
@@ -60,7 +59,6 @@ public class Queen extends Piece {
 
         else if(xdiff==ydiff)
         {
-            System.out.println("bishop's movement");
             //Bishop's movement
             if(start.getX()<end.getX() && start.getY()<end.getY()){
                 //forward right

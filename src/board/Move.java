@@ -21,14 +21,12 @@ public class Move {
     }
 
     public boolean makeMove(){
-
         if(this.player.getSide() != this.pieceMoved.getPieceColor()){
-            System.out.println("Cannot move enemy piece");
+            System.out.print(" ERR: Cannot move enemy piece");
             return false;
         }
 
         else if(this.pieceMoved.isValidMove(board, this.start, this.end)){
-            System.out.println("valid move-->");
             if(this.end.getPiece() == null){
                 this.pieceMoved.setCoord(end);
                 this.board.setTile(this.start,null);
@@ -38,7 +36,7 @@ public class Move {
             else if(this.end.getPiece()!=null && this.end.getPiece().getPieceColor()!=this.player.getSide()){
 
                 if(this.end.getPiece().getPieceType().equals("KING")){
-                    System.out.println(this.player.getSide().toString()+" KING IS IN CHECK");   
+                    System.out.print("ERR: KING IS ALREADY IN CHECK");   
                 }
                 else{
                     this.pieceMoved.setCoord(end);
@@ -49,15 +47,13 @@ public class Move {
                 }
                 return true;
             }
-            else{
-                
+            else{  
                 return false;
             }
         }
         
-        
         else{
-            System.err.println("This move is not valid");
+            System.err.println(" ERR: This move is not valid");
             this.setPieceMoved(null);
             return false;
         }

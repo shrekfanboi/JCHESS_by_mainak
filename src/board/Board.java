@@ -1,4 +1,6 @@
 package board;
+import java.util.ArrayList;
+import java.util.List;
 import pieces.*;
 public class Board { 
     Tile[][] floor = new Tile[10][10];
@@ -72,14 +74,15 @@ public class Board {
     }
 
 
-    public Tile getKing(Type t){
+    public List<Tile> getPieceTile(String piece,Type t){
+        List<Tile> pieceTile = new ArrayList<>();
         for(int i=0;i<8;i++){
             for(int j=0;j<8;j++){
-                if(this.getTile(i, j).getPiece().getPieceType().equals("KING") && this.getTile(i, j).getPiece().getPieceColor()==t){
-                    return this.floor[i][j];}
+                if(this.getTile(i,j).getPiece()!=null && this.getTile(i, j).getPiece().getPieceType().equals(piece) && this.getTile(i, j).getPiece().getPieceColor()==t){
+                    pieceTile.add(this.getTile(i, j));}
             }
         }
-        return null;
+        return pieceTile;
     }
 
     public void displayBoard(){

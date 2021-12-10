@@ -33,4 +33,8 @@ public int getY(){
     return this.y;
 }
 
+public int getId(){
+    return this.getX()*8+this.getY();
+}
+
 }

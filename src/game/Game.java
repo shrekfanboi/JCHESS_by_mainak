@@ -1,6 +1,8 @@
 package game;
+import java.util.List;
 import board.Board;
 import board.Move;
+import board.Piecetype;
 import board.Type;
 import gui.CliGui;
 import pieces.Piece;
@@ -13,12 +15,16 @@ public class Game {
     private Player currentTurn;
     private GameStatus status;
     private Piece pieceKilled;
+    private boolean isWhiteKingChecked;
+    private boolean isBlackKingChecked;
     
     public Game(String whitePlayerName,String blackPlayerName,Board chessBoard){
         this.chessboard = chessBoard;
         this.whitePlayer = new Player(Type.WHITE, true, whitePlayerName);
         this.blackPlayer = new Player(Type.BLACK, true, blackPlayerName);
         this.currentTurn = this.whitePlayer;
+        this.isWhiteKingChecked = false;
+        this.isBlackKingChecked = false;
     }
 
     public GameStatus getStatus() {
@@ -51,16 +57,37 @@ public class Game {
 
     public void playerMove(Tile start,Tile end){
         Move move = new Move(this.currentTurn, start, end,this.chessboard);
+        System.out.print("Move-> ("+start.getX()+","+start.getY()+") to ("+end.getX()+","+end.getY()+")");
         if(move.makeMove()){
             this.setCurrentTurn();
             this.setPieceKilled(move.getPieceKilled());
-            System.out.println("Move is successful");
+            System.out.print(" Status: SUCCESS ");
+            if(this.getPieceKilled()!=null){ System.out.print(" KilledPiece-> "+this.getPieceKilled().getPieceType());}
         }
         move.setPieceKilled(null);
+        this.isWhiteKingChecked = false;
+        this.isBlackKingChecked = false;
+        if(this.isCheck(Type.BLACK)){ this.isBlackKingChecked = true;}
+        if(this.isCheck(Type.WHITE)){ this.isWhiteKingChecked = true;}
+        System.out.println();
     }
 
 
-    
+    public boolean isCheck(Type t){
+        List<Tile> kingLoc = this.chessboard.getPieceTile("KING",t);
+        Type enemySide = t==Type.WHITE ? Type.BLACK : Type.WHITE;
+        for(Piecetype piece:Piecetype.values()){
+            List<Tile> pieceLoc = chessboard.getPieceTile(piece.toString(),enemySide);
+            for(Tile loc:pieceLoc){
+                Piece p = loc.getPiece();
+                if(p!=null && p.isValidMove(this.chessboard, loc, kingLoc.get(0))){
+                    System.out.print(" "+t.toString()+" King is in check from "+p.getPieceType());
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
 
 
     public Player getCurrentTurn(){
@@ -75,5 +102,11 @@ public class Game {
     }
     public void setPieceKilled(Piece p){
         this.pieceKilled = p;
+    }
+    public boolean getWhiteKingChecked(){
+        return this.isWhiteKingChecked;
+    }
+    public boolean getBlackKingChecked(){
+        return this.isBlackKingChecked;
     }
 }

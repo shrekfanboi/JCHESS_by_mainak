@@ -20,8 +20,14 @@ public class Pawn extends Piece{
             int x = Math.abs(start.getX() - end.getX());
             int y = Math.abs(start.getY() - end.getY());
             if(end.getPiece() == null){
+
+                if(this.getPieceColor()==Type.BLACK){
+                    return x == 1 && y == 0 && start.getX() > end.getX();
+                }
+                else{
+                    return x == 1 && y == 0 && start.getX() < end.getX();
+                }
                 
-                return x == 1 && y == 0;
             }
             else{
                 //enemy piece

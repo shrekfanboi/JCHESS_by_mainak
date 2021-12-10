@@ -52,7 +52,7 @@ public class TakenPiecesPanel extends JPanel {
                 String finalPath = ChessGUI.PIECE_PATH+"WHITE"+File.separator+p.getPieceType().toLowerCase()+".gif";
                 BufferedImage image = ImageIO.read(new File(finalPath));
                 final ImageIcon icon = new ImageIcon(image);
-                final JLabel imageLabel = new JLabel(new ImageIcon(icon.getImage().getScaledInstance(icon.getIconWidth() - 15, icon.getIconWidth() - 15, Image.SCALE_SMOOTH)));
+                final JLabel imageLabel = new JLabel(new ImageIcon(icon.getImage().getScaledInstance(icon.getIconWidth() - 18, icon.getIconWidth() - 18, Image.SCALE_SMOOTH)));
                 this.southPanel.add(imageLabel);
             }
             catch(Exception e){
