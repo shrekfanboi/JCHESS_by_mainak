@@ -56,10 +56,12 @@ public class Game {
             this.setPieceKilled(move.getPieceKilled());
             System.out.println("Move is successful");
         }
-        // if(this.getPieceKilled()!=null) System.out.println(this.getPieceKilled().toString());
-        // else {System.out.println("null");} 
         move.setPieceKilled(null);
     }
+
+
+    
+
 
     public Player getCurrentTurn(){
         return this.currentTurn;

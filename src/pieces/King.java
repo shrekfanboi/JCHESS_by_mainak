@@ -7,6 +7,7 @@ import board.Type;
 
 
 public class King extends Piece{
+    
     public King(int x,int y,boolean available,Type pieceColor){
         super(x, y, available, pieceColor,KING);
     }
@@ -20,4 +21,5 @@ public class King extends Piece{
         int y = Math.abs(start.getY() - end.getY());
         return (x+y > 0) && (x+y <= 2);
     }
+    
 }

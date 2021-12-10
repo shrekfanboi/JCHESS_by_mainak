@@ -18,10 +18,10 @@ public class Rook extends Piece {
         int xdiff = Math.abs(start.getX() - end.getX());
         int ydiff = Math.abs(start.getY() - end.getY());
         
-        return ((xdiff>0 && ydiff==0) || (xdiff==0 && ydiff > 0)) && this.drawPath(board, start, end, xdiff, ydiff);
+        return ((xdiff>0 && ydiff==0) || (xdiff==0 && ydiff > 0)) && this.isValidPath(board, start, end, xdiff, ydiff);
     }
 
-    public boolean drawPath(Board board,Tile start,Tile end,int x,int y){
+    public boolean isValidPath(Board board,Tile start,Tile end,int x,int y){
         int i;
         int j;
         if(y == 0 && start.getX() < end.getX()){
@@ -46,7 +46,7 @@ public class Rook extends Piece {
             return true;
         }
         else if(x == 0 && start.getY() > end.getY()){
-            //horizantally left
+            //horizantally lefisValidPath
             for(j=start.getY()-1;j>end.getY();j--){
                 if(board.getTile(start.getX(), j).getPiece()!=null) return false;
             }

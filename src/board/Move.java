@@ -29,13 +29,32 @@ public class Move {
 
         else if(this.pieceMoved.isValidMove(board, this.start, this.end)){
             System.out.println("valid move-->");
-            this.pieceMoved.setCoord(end);
-            this.board.setTile(this.start,null);
-            if(this.end.getPiece()!=null) this.setPieceKilled(this.end.getPiece());
-            this.board.setTile(this.end, this.pieceMoved);
-            this.player.registerMove(this);
-            return true;
+            if(this.end.getPiece() == null){
+                this.pieceMoved.setCoord(end);
+                this.board.setTile(this.start,null);
+                this.board.setTile(this.end, this.pieceMoved);
+                return true;
+            }
+            else if(this.end.getPiece()!=null && this.end.getPiece().getPieceColor()!=this.player.getSide()){
+
+                if(this.end.getPiece().getPieceType().equals("KING")){
+                    System.out.println(this.player.getSide().toString()+" KING IS IN CHECK");   
+                }
+                else{
+                    this.pieceMoved.setCoord(end);
+                    this.board.setTile(this.start,null);
+                    this.setPieceKilled(this.end.getPiece());
+                    this.board.setTile(this.end, this.pieceMoved);
+                    this.player.registerMove(this);
+                }
+                return true;
+            }
+            else{
+                
+                return false;
+            }
         }
+        
         
         else{
             System.err.println("This move is not valid");
@@ -43,6 +62,7 @@ public class Move {
             return false;
         }
     }
+
     public Piece getPieceKilled(){
         return this.pieceKilled;
     }

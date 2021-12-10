@@ -17,10 +17,10 @@ public class Bishop extends Piece {
         }
         int xdiff = Math.abs(start.getX() - end.getX());
         int ydiff = Math.abs(start.getY() - end.getY());
-        return (xdiff == ydiff) && this.drawPath(board, start, end);
+        return (xdiff == ydiff) && this.isValidPath(board, start, end);
     }
 
-    public boolean drawPath(Board board,Tile start,Tile end){
+    public boolean isValidPath(Board board,Tile start,Tile end){
         if(start.getX()<end.getX() && start.getY()<end.getY()){
             //forward right
             int j=1;

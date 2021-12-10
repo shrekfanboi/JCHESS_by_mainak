@@ -72,6 +72,16 @@ public class Board {
     }
 
 
+    public Tile getKing(Type t){
+        for(int i=0;i<8;i++){
+            for(int j=0;j<8;j++){
+                if(this.getTile(i, j).getPiece().getPieceType().equals("KING") && this.getTile(i, j).getPiece().getPieceColor()==t){
+                    return this.floor[i][j];}
+            }
+        }
+        return null;
+    }
+
     public void displayBoard(){
         for(int i=0;i<8;i++){
             for(int j=0;j<8;j++){
