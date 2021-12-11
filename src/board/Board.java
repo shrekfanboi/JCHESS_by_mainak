@@ -54,7 +54,7 @@ public class Board {
 
     public Tile getTile(int x,int y){
         if(x < 0 || x > 7 || y < 0 || y > 7){
-            throw new IndexOutOfBoundsException("Index out of Bound");
+            return null;
         }
         return this.floor[x][y];
     }

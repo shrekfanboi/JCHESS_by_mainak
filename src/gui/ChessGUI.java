@@ -63,6 +63,7 @@ public class ChessGUI {
         tableMenuBar.add(new JMenu("Options"));
     }
 
+
     private class BoardPanel extends JPanel{
         private ArrayList<TilePanel> boardTile;
         BoardPanel(){
