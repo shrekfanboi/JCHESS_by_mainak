@@ -26,3 +26,6 @@ The Main Game is compiled as ChessGUI.class
 Game Output
 
 ![This is an image](https://github.com/shrekfanboi/JCHESS_by_mainak/blob/master/src/demo.png)
+
+
+> This [video](https://www.youtube.com/playlist?list=PLOJzCFLZdG4zk5d-1_ah2B4kqZSeIlWtt) helped me in making this project
