@@ -22,3 +22,5 @@ Hello,
 Code published by Mainak
 
 The Main Game is compiled as ChessGUI.class
+
+![This is an image](https://github.com/shrekfanboi/JCHESS_by_mainak/blob/master/src/demo.png)
